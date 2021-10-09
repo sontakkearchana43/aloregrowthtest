@@ -1,0 +1,85 @@
+<ng-container *ngIf="data == 'T' else segment">
+<h1 mat-dialog-title>Add a table</h1>
+<div mat-dialog-content>
+    <form [formGroup]="tableForm" (submit)="submit()" class="tableform">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Name
+          </mat-label>
+          <input matInput formControlName="name" placeholder="Enter name" required>
+          <mat-error *ngIf="tableForm.controls.name.touched && tableForm.controls.name.invalid">
+            <span *ngIf="tableForm.controls.name.errors?.required">This name field is required.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline" [matMenuTriggerFor]="menu">
+          <mat-label> Icon
+          </mat-label>
+          <input matInput formControlName="icon" type="text" placeholder="Select Icon"  required>
+          <mat-menu #menu="matMenu">
+            <emoji-mart  (emojiSelect)="onEmojiSelect($event)"
+            [i18n]="{ search: 'Search', categories: { search: 'Search results', recent: 'Recent Search results' } }"
+           ></emoji-mart>
+         </mat-menu>
+          <mat-error *ngIf="tableForm.controls.icon.touched && tableForm.controls.icon.invalid">
+            <span *ngIf="tableForm.controls.icon.errors?.required">This field is mandatory.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline" [matMenuTriggerFor]="colorMenu">
+            <mat-label> Color
+            </mat-label>
+            <input matInput formControlName="color" type="text" placeholder="Select Icon" required readonly>
+            <mat-menu #colorMenu="matMenu">
+                <div class="color-menu">
+                  <div *ngFor="let color of colorsList" class="color-circle" [style.background]="color" (click)="selectedColor(color)"></div>
+                </div>
+           </mat-menu>
+            <mat-error *ngIf="tableForm.controls.color.touched && tableForm.controls.color.invalid">
+              <span *ngIf="tableForm.controls.color.errors?.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+          <div class="btns">
+          <button mat-raised-button color="primary" type="submit" [disabled]="tableForm.invalid">Add</button>
+          <button mat-stroked-button color="primary" type="submit">Cancel</button>
+        </div>
+      </form>
+</div>
+</ng-container>
+<ng-template #segment>
+    <h1 mat-dialog-title>Add a segment</h1>
+<div mat-dialog-content>
+    <form [formGroup]="segmentForm" (submit)="submit()" class="segmentForm">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Name
+          </mat-label>
+          <input matInput formControlName="name" placeholder="Enter name" required>
+          <mat-error *ngIf="segmentForm.controls.name.touched && segmentForm.controls.name.invalid">
+            <span *ngIf="segmentForm.controls.name.errors?.required">This name field is required.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline" [matMenuTriggerFor]="menu">
+          <mat-label> Icon
+          </mat-label>
+          <input matInput formControlName="icon" type="text" placeholder="Select Icon"  required>
+          <mat-menu #menu="matMenu">
+            <emoji-mart  (emojiSelect)="onEmojiSelect($event)"
+            [i18n]="{ search: 'Search', categories: { search: 'Search results', recent: 'Recent Search results' } }"
+           ></emoji-mart>
+         </mat-menu>
+          <mat-error *ngIf="segmentForm.controls.icon.touched && segmentForm.controls.icon.invalid">
+            <span *ngIf="segmentForm.controls.icon.errors?.required">This field is mandatory.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+            <mat-label> Description
+            </mat-label>
+            <textarea matInput formControlName="description" placeholder="Select Icon" required></textarea>
+            <mat-error *ngIf="segmentForm.controls.description.touched && segmentForm.controls.description.invalid">
+              <span *ngIf="segmentForm.controls.description.errors?.required">This field is mandatory.</span>
+            </mat-error>.
+          </mat-form-field>
+          <div class="btns">
+          <button mat-raised-button color="primary" type="submit" [disabled]="segmentForm.invalid">Add</button>
+          <button mat-stroked-button color="primary" type="submit">Cancel</button>
+        </div>
+      </form>
+      </div>
+</ng-template>

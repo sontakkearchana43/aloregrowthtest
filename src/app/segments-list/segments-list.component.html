@@ -1,0 +1,18 @@
+<div class="segments-container">
+    <div class="segment-section" *ngFor="let seg of segmentsList;let index = index">
+     <div class="seg">
+        <h2>{{seg.icon}} {{seg.name}}</h2>
+       <div>
+        <div class="list" *ngFor="let li of seg.list">
+            <ng-container *ngIf="!li?.isPlus else plus">
+                <div class="icon" [style.border-color]="li.color">{{li.icon}}<span [style.background]="li.color"></span></div>
+                <p>{{li.name}}</p>
+            </ng-container>
+            <ng-template #plus>
+                <mat-icon class="addmat" matTooltip="Add a new table" matTooltipPosition="above" (click)="onAddTable(index)">add</mat-icon>
+            </ng-template>
+        </div>
+    </div>
+       </div>
+    </div>
+</div>

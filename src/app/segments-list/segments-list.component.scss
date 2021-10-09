@@ -1,0 +1,65 @@
+.segments-container {
+    padding: 25px;
+    .segment-section {
+        margin-bottom: 20px;
+        cursor: pointer;
+        .addmat {
+            padding: 15px;
+            border: 2px solid black;
+            border-radius: 5px;
+            &:hover {
+                box-shadow: 2px 2px black;
+                border: 2px solid blue;
+            }
+        }
+        .seg {
+            display: flex;
+            flex-direction: column;
+            > div {
+               display: flex; 
+            }
+        }
+        .list{
+            display: inline-block;
+            width: 65px;
+            padding-left: 20px;
+            .icon {
+                padding: 18px;
+                border: 2px solid black;
+                border-radius: 5px;
+                position: relative;
+                span {
+                    position: absolute;
+                    height: 5px;
+                    width: 5px;
+                    border-radius: 50%;
+                    top: 3px;
+                    right: 3px;
+                    background: red;
+                }
+            }
+        }
+    }
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    li {
+        padding: 18px;
+        border: 2px solid black;
+        border-radius: 5px;
+        position: relative;
+        span {
+            position: absolute;
+            height: 5px;
+            width: 5px;
+            border-radius: 50%;
+            top: 3px;
+            right: 3px;
+            background: red;
+        }
+    }
+}
